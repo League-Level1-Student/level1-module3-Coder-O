@@ -10,10 +10,18 @@ public class Backpack {
 	private Textbook textbook;
 
 	public void packAndCheck() {
-		// Your mission is to go to school.
+		// Your mission is to go to school. <--- Imagine going to school.
 		// 1. First you need to put all your supplies into your backpack - use
 		// the putInBackpack(...) methods
-
+		
+		this.pencil = new Pencil();
+		this.ruler = new Ruler();
+		this.textbook = new Textbook();
+		
+		
+		putInBackpack(pencil);
+		putInBackpack(ruler);
+		putInBackpack(textbook);
 		goToSchool();
 	}
 

@@ -12,7 +12,10 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -26,8 +29,9 @@ public class Jukebox implements Runnable {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-
+    	Song zeldaSong = new Song("01 Prelude of Time.mp3");
 		// 3. Play the Song
+    	zelda.play();
 
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
@@ -36,6 +40,21 @@ public class Jukebox implements Runnable {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
+    	JFrame frame = new JFrame();
+    	JPanel panel = new JPanel();
+    	JButton play = new JButton();
+    	JButton playZelda = new JButton();
+    	
+    	
+    	play.setText("play");
+    	
+    	URL imageURL = getClass().getResource("Ocarina_of_time.jpg");
+		Icon icon = new ImageIcon(imageURL);
+    	playZelda.setIcon(icon);
+    	
+    	frame.add(panel);
+    	panel.add(play);
+    	panel.add(playZelda);
     }
     
     
