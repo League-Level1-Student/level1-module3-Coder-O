@@ -5,6 +5,9 @@ package _03_jukebox;
  */
 
 
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -23,15 +26,22 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
-
+public class Jukebox implements Runnable, ActionListener {
+JButton play;
+JButton playZelda;
+Song zeldaSong;
+Song lostSong;
+Song currentSong;
     public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
-    	Song zeldaSong = new Song("01 Prelude of Time.mp3");
-		// 3. Play the Song
-    	zelda.play();
+    	zeldaSong = new Song("01 Prelude of Time.mp3");
+		lostSong = new Song("18 Lost Woods.mp3");
+    	// 3. Play the Song
+    	
+    	currentSong = zeldaSong;
+    	
 
 		/*
 		 * 4. Create a user interface for your Jukebox so that the user can to
@@ -42,19 +52,29 @@ public class Jukebox implements Runnable {
 		 */
     	JFrame frame = new JFrame();
     	JPanel panel = new JPanel();
-    	JButton play = new JButton();
-    	JButton playZelda = new JButton();
+    	play = new JButton();
+    	playZelda = new JButton();
     	
-    	
-    	play.setText("play");
+    	play.setText("Pause");
     	
     	URL imageURL = getClass().getResource("Ocarina_of_time.jpg");
 		Icon icon = new ImageIcon(imageURL);
-    	playZelda.setIcon(icon);
+		
+		//ImageIcon icon = new ImageIcon(new ImageIcon("Ocarina_of_time.jpg").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+		
+		
+		playZelda.setIcon(icon);
+    	playZelda.setSize(50, 50);
+    	playZelda.addActionListener(this);
+    	
+    	play.addActionListener(this);
     	
     	frame.add(panel);
     	panel.add(play);
     	panel.add(playZelda);
+    	
+    	frame.pack();
+    	frame.setVisible(true);
     }
     
     
@@ -63,6 +83,30 @@ public class Jukebox implements Runnable {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource().equals(play)) {
+			if(play.getText().equals("Play")) {
+				currentSong.play();
+				play.setText("Pause");
+			} else {
+				currentSong.stop();
+				play.setText("Play");
+			}
+		} else if (e.getSource().equals(playZelda)) {
+			currentSong.stop();
+			if(!currentSong.equals(zeldaSong)) {
+				currentSong = zeldaSong;
+			} else {
+				currentSong = lostSong;
+			}
+			currentSong.play();
+			play.setText("Pause");
+		}
 	}
 
 }
