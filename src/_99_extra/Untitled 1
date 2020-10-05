@@ -1,0 +1,33 @@
+Public class Student{
+
+      static int nextId = 1;
+      static String School="Carmel Valley ";
+
+      int id;
+
+      String name;
+
+      int currentLevel;
+
+      Student (String name, int currentLevel){
+
+          this.name = name; 
+          this.currentLevel = currentLevel;
+          this.id = nextID;
+          nextID++;
+     } 
+
+      public static void main(String[] args){ 
+
+      //create 2 students. 
+      Student student1 = new Student("Kile", 3);
+      Student student2 = new Student("Miles", 4);
+      
+
+      //print their names, ids and school.
+      System.out.println(student1.name);
+      System.out.println(student2.name);
+      System.out.println(student1.id);
+      System.out.println(student2.id);
+      System.out.println(student1.School);
+       }} 

@@ -35,16 +35,24 @@ public class CowTimer {
 		 * of minutes using Thread.sleep(int milliseconds).
 		 */
 		
-		while(this.minutes>=0) {
+		while(this.minutes>1) {
 			System.out.println(this.minutes+" minutes remain.");
 			Thread.sleep(60000);
+			this.minutes--;
+		}
+		System.out.println("One minute remains.");
+		for (int i = 0; i < 60; i++) {
+			System.out.println((60-i)+" seconds remain.");
+			Thread.sleep(1000);
 		}
 
 		/*
 		 * 3. When the timer is finished, use the playSound method to play a moo sound.
 		 * You can use the .wav file in the default package, or you can download one
-		 * from freesound.org, then drag it intothe default package.
+		 * from freesound.org, then drag it into the default package.
 		 */
+		System.out.println("Time's up!");
+		playSound("moo.wav");
 
 	}
 
